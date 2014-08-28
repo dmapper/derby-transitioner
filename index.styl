@@ -1,0 +1,75 @@
+// *************************************
+//
+//   Transition panes
+//
+// *************************************
+
+// -------------------------------------
+//   Helpers
+// -------------------------------------
+
+// Creates keyframes for 2 animations: "name" and "name-copy".
+// This is required to restart the animation on an element.
+keyframes-duplicate(name)
+  @keyframes name
+    {block}
+  nameCopy = '%s-copy' % name
+  @keyframes nameCopy
+    {block}
+
+// Switching between 2 classes with different animation names for the same
+// animation.
+transition-switch-animation(animation)
+  &.transition-1
+    animation animation 0.5s
+  &.transition-2
+    animation '%s-copy 0.5s' % animation
+
+// -------------------------------------
+//   Keyframes
+// -------------------------------------
+
++keyframes-duplicate(forward)
+  0%
+    transform scale(1) translateX(100%)
+  0.001%
+    transform scale(1) translateX(100%)
+  100%
+    transform scale(1) translateX(0)
+
++keyframes-duplicate(backward)
+  0%
+    transform scale(1) translateX(-100%)
+  0.001%
+    transform scale(1) translateX(-100%)
+  100%
+    transform scale(1) translateX(0)
+
+// -------------------------------------
+//   Main
+// -------------------------------------
+
+.transition-pane
+  height 100%
+  width 100%
+  position absolute
+  top 0
+  transform scale(1)
+
+.current-pane
+  left -100%
+.next-pane
+  left 0
+
+.transition-panes
+  height 100%
+  position relative
+  transform scale(1) translateX(0)
+
+  &[data-transition='forward']
+    transition-switch-animation(forward)
+
+  &[data-transition='backward']
+    transition-switch-animation(backward)
+    .current-pane
+      left 100%

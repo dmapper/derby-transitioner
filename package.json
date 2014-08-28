@@ -1,0 +1,25 @@
+{
+  "name": "derby-transitioner",
+  "description": "Transition screens to get a native mobile-app feeling",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dmapper/derby-transitioner.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "grunt build"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-notify": "*",
+    "grunt-bower-task": "*",
+    "load-grunt-tasks": "*"
+  }
+}
